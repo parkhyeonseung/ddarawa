@@ -12,7 +12,7 @@ def callback_t4(data):
 
 
 if __name__=='__main__':
-    rospy.init_node('master_receive_pose')
+    rospy.init_node('master_receive_t4pose')
     rospy.Subscriber('t4_command', callback=callback_t4)
     rospy.spin()
 
