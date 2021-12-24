@@ -13,7 +13,6 @@ def movebase_client():
 
 
     goal.target_pose.pose.orientation.w =float(input('w 각속도 ex(0.0):'))
-
     goal.target_pose.pose.position.x = float(input('x float ex(0.0):'))
     goal.target_pose.pose.position.y  = float(input('y float ex(0.0):'))
 

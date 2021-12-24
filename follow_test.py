@@ -9,7 +9,7 @@ def main(data):  # 앞 물체 따라가기
     rospy.init_node('follow')
     pub = rospy.Publisher('/cmd_vel',Twist,queue_size=5)
 
-    new_range = [data.ranges[0:4], data.ranges[-4:]]
+    new_range = [data.ranges[0:7], data.ranges[-7:]]
     new_arry = np.array(new_range)
 
     result = np.count_nonzero( new_arry >= 0.5)
@@ -73,7 +73,7 @@ def main(data):  # 앞 물체 따라가기
                 msg.linear.x = 0
                 msg.angular.z = -1
         
-        # msg.linear.x = -0.03
+
 
     pub.publish(msg)
 
