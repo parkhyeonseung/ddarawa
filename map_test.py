@@ -29,7 +29,7 @@ def main(data):  # 맵 스캔용 자율주행
     # print(right_range,'&&&&',right_range_result)
 
 
-    back_range = data.ranges[167:173]
+    back_range = data.ranges[175:185]
     back_range = np.array(back_range)
     back_range_result = np.count_nonzero( back_range >= 0.15)
     # print(back_range,'&&&&',back_range_result)
