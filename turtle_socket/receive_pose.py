@@ -2,6 +2,7 @@
 
 import rospy
 import socket
+import pickle
 
 master_ip = '192.168.0.16'
 
@@ -13,5 +14,5 @@ if __name__=='__main__':
     receiver.bind((master_ip,7778))
     while True:
         bytepair = receiver.recvfrom(1024)
-        message = bytepair[0].decode('utf-8')
+        message = pickle.loads(bytepair[0]) 
         print(message)
