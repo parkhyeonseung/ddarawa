@@ -48,7 +48,7 @@ def main(data):  # 맵 스캔용 자율주행
         msg.angular.z = 0
         msg.linear.x = 0
     
-        msg.linear.x = 0.02
+        msg.linear.x = 0.04
         if left_range_45_result == 0:
             msg.angular.z = -1
             time.sleep(0.2)
@@ -81,7 +81,8 @@ def main(data):  # 맵 스캔용 자율주행
                 # if back_range_result == 0:
                 #     msg.linear.x = 0.05
         else :
-            msg.linear.x =-0.01
+            msg.angular.z = 1
+            msg.linear.x =-0.03
     else :
         msg.linear.x = -0.03
 
