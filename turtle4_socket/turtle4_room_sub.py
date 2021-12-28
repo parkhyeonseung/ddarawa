@@ -4,20 +4,23 @@ import socket
 import pickle
 from geometry_msgs.msg import PoseStamped
 
-pub = rospy.Publisher('/move_base_simple/goal',PoseStamped,queue_size=10)
 
-turtle4_ip = '192.168.0.16'
-receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-receiver.bind((turtle4_ip,5555))
+if __name__ == '__main__':
+    rospy.init_node('T4_room_pose')
+    pub = rospy.Publisher('/move_base_simple/goal',PoseStamped,queue_size=10)
 
-while True:
-    bytepair = receiver.recvfrom(1024)
-    room_data = pickle.loads(bytepair[0]) 
-    goal = PoseStamped()
-    goal.header.frame_id= 'map'
-    goal.pose.orientation.w =float(0.5)
-    goal.pose.position.x = float(room_data[1])
-    goal.pose.position.y  = float(room_data[2])
-    goal.pose.orientation.z  = float(room_data[3])
-    rospy.sleep(0.5)
-    pub.publish(goal)
+    turtle4_ip = '192.168.0.16'
+    receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    receiver.bind((turtle4_ip,5555))
+
+    while True:
+        bytepair = receiver.recvfrom(1024)
+        room_data = pickle.loads(bytepair[0]) 
+        goal = PoseStamped()
+        goal.header.frame_id= 'map'
+        goal.pose.orientation.w =float(0.5)
+        goal.pose.position.x = float(room_data[1])
+        goal.pose.position.y  = float(room_data[2])
+        goal.pose.orientation.z  = float(room_data[3])
+        rospy.sleep(0.5)
+        pub.publish(goal)
