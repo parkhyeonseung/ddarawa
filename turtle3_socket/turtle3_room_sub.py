@@ -16,11 +16,14 @@ if __name__ == '__main__':
     while True:
         bytepair = receiver.recvfrom(1024)
         room_data = pickle.loads(bytepair[0]) 
-        goal = PoseStamped()
-        goal.header.frame_id= 'map'
-        goal.pose.orientation.w =float(0.5)
-        goal.pose.position.x = float(room_data[1])
-        goal.pose.position.y  = float(room_data[2])
-        goal.pose.orientation.z  = float(room_data[3])
-        rospy.sleep(0.5)
-        pub.publish(goal)
+        try:
+            goal = PoseStamped()
+            goal.header.frame_id= 'map'
+            goal.pose.orientation.w =float(0.5)
+            goal.pose.position.x = float(room_data[1])
+            goal.pose.position.y  = float(room_data[2])
+            goal.pose.orientation.z  = float(room_data[3])
+            rospy.sleep(0.5)
+            pub.publish(goal)
+        except:
+            pass
