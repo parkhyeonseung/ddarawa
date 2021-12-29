@@ -14,7 +14,7 @@ def main(data):  # 맵 스캔용 자율주행
     new_range = [data.ranges[0:4], data.ranges[-4:]]
     new_arry = np.array(new_range)
 
-    result = np.count_nonzero( new_arry >= 0.3)
+    result = np.count_nonzero( new_arry >= 0.23)
 
     msg = Twist()
  
