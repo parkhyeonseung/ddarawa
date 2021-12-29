@@ -22,9 +22,9 @@ if __name__ == '__main__':
     rospy.init_node('movebase_client_py')
 
     turtle1_ip = '192.168.0.32'
-    turtle2_ip = '192.168.0.31'
+    turtle2_ip = '192.168.0.6'
     turtle3_ip = '192.168.0.31'
-    turtle4_ip = '192.168.0.31'
+    turtle4_ip = '192.168.0.6'
 
     sender = socket.socket(family=socket.AF_INET,type = socket.SOCK_DGRAM)
 

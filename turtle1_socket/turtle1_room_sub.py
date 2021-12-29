@@ -10,7 +10,7 @@ if __name__ == '__main__':
     rospy.init_node('T1_room_pose')
     pub = rospy.Publisher('/move_base_simple/goal',PoseStamped,queue_size=10)
 
-    turtle1_ip = '192.168.0.16'
+    turtle1_ip = '192.168.0.32'
     receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     receiver.bind((turtle1_ip,5555))
 
@@ -31,6 +31,6 @@ if __name__ == '__main__':
             client.wait_for_server()
             result = client.get_result()
             print(result)
-            
+
         except:
             pass

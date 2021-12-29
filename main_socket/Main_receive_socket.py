@@ -7,7 +7,7 @@ from std_msgs.msg import Float64MultiArray
 
 if __name__=='__main__':
     rospy.init_node('master_receive_pose')
-    main_ip = '192.168.0.16'
+    main_ip = '192.168.0.6'
 
     ####### turtlebot들한테서 position을 소켓으로 받는 main#############
     receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)

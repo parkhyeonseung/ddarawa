@@ -8,7 +8,7 @@ if __name__ == '__main__':
     rospy.init_node('T2_room_pose')
     pub = rospy.Publisher('/move_base_simple/goal',PoseStamped,queue_size=10)
 
-    turtle2_ip = '192.168.0.16'
+    turtle2_ip = '192.168.0.6'
     receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     receiver.bind((turtle2_ip,5555))
 
