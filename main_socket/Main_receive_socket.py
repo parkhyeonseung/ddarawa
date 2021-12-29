@@ -32,13 +32,13 @@ if __name__=='__main__':
             t1_pub.publish(turtle_data)
 
         elif turtle_id == 'T2':
-            t1_pub.publish(turtle_data)
+            t2_pub.publish(turtle_data)
 
         elif turtle_id == 'T3':
-            t1_pub.publish(turtle_data)
+            t3_pub.publish(turtle_data)
 
         elif turtle_id == 'T4':
-            t1_pub.publish(turtle_data)
+            t4_pub.publish(turtle_data)
 
         elif turtle_id == 'T5':
-            t1_pub.publish(turtle_data)
+            t5_pub.publish(turtle_data)
