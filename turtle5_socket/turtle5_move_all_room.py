@@ -1,10 +1,11 @@
 #! /usr/bin/env python3
 
 import rospy
-import socket
-import pickle
 import rospy
 import sys, select, termios, tty
+from geometry_msgs.msg import PoseStamped
+import actionlib
+from move_base_msgs.msg import MoveBaseAction
 
 def getKey():
     tty.setraw(sys.stdin.fileno())
@@ -19,19 +20,11 @@ def getKey():
     return key
 
 if __name__ == '__main__':
-    rospy.init_node('movebase_client_py')
-
-    turtle1_ip = '192.168.0.32'
-    turtle2_ip = '192.168.0.31'
-    turtle3_ip = '192.168.0.31'
-    turtle4_ip = '192.168.0.31'
-
-    sender = socket.socket(family=socket.AF_INET,type = socket.SOCK_DGRAM)
+    rospy.init_node('T5_move_all')
+    pub = rospy.Publisher('/move_base_simple/goal',PoseStamped,queue_size=10)
 
     settings = termios.tcgetattr(sys.stdin)
-    prev_pos = None
     tar_position=None
-    bot_ip = None
     room_1 = [1, 1.0, -0.5, 1.0]  ## room number , x, y, z
     room_2 = [2, 2.0, 2.0, 2.0]
     room_3 = [3, 3.0, 3.0, 3.0]
@@ -43,17 +36,13 @@ if __name__ == '__main__':
             if key == '1':
                 print('room 1')
                 tar_position = room_1
-                bot_ip = turtle1_ip
             elif key == '2':
                 print('room2')
                 tar_position = room_2
-                bot_ip = turtle2_ip
             elif key == '3':
                 tar_position = room_3
-                bot_ip = turtle2_ip
             elif key == '4':
                 tar_position = room_4
-                bot_ip = turtle2_ip
 
             elif key == 'q':
                 break
@@ -61,8 +50,20 @@ if __name__ == '__main__':
                 tar_position = None
 
             if tar_position != None:
-                room_pose=pickle.dumps(tar_position)
-                sender.sendto(room_pose,(bot_ip,5555))
+                room_data = tar_position[1:]
+                goal = PoseStamped()
+                goal.header.frame_id= 'map'
+                goal.pose.orientation.w =float(0.5)
+                goal.pose.position.x = float(room_data[1])
+                goal.pose.position.y  = float(room_data[2])
+                goal.pose.orientation.z  = float(room_data[3])
+                rospy.sleep(0.5)
+                pub.publish(goal)
+
+                client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
+                client.wait_for_server()
+                result = client.get_result()
+                print(result)
 
         except KeyboardInterrupt :
             break

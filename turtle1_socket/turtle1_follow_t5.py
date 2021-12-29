@@ -3,16 +3,14 @@ import rospy
 import socket
 import pickle
 from geometry_msgs.msg import PoseStamped
-import actionlib
-from move_base_msgs.msg import MoveBaseAction
 
 if __name__ == '__main__':
-    rospy.init_node('T1_room_pose')
+    rospy.init_node('T1_follow')
     pub = rospy.Publisher('/move_base_simple/goal',PoseStamped,queue_size=10)
 
     turtle1_ip = '192.168.0.16'
     receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    receiver.bind((turtle1_ip,5555))
+    receiver.bind((turtle1_ip,6666))
 
     while True:
         bytepair = receiver.recvfrom(1024)
@@ -26,11 +24,5 @@ if __name__ == '__main__':
             goal.pose.orientation.z  = float(room_data[3])
             rospy.sleep(0.5)
             pub.publish(goal)
-
-            client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
-            client.wait_for_server()
-            result = client.get_result()
-            print(result)
-            
         except:
             pass
