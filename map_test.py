@@ -14,7 +14,7 @@ def main(data):  # 맵 스캔용 자율주행
     new_range = [data.ranges[0:4], data.ranges[-4:]]
     new_arry = np.array(new_range)
 
-    result = np.count_nonzero( new_arry >= 0.25)
+    result = np.count_nonzero( new_arry >= 0.3)
 
     msg = Twist()
  
@@ -69,17 +69,15 @@ def main(data):  # 맵 스캔용 자율주행
             if back_range_result == 0:
                 msg.linear.x = 0.04
             msg.linear.x =-0.01
-            # if back_range_result == 0:
-            #     msg.linear.x = 0.05
+
         
         elif left_range_result == 0:
             msg.angular.z = -1
-            time.sleep(0.0)
+            time.sleep(0.1)
             if back_range_result == 0:
                 msg.linear.x = 0.04
             msg.linear.x =-0.01
-                # if back_range_result == 0:
-                #     msg.linear.x = 0.05
+
         else :
             msg.angular.z = 1
             msg.linear.x =-0.03
