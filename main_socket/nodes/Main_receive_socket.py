@@ -30,9 +30,11 @@ if __name__=='__main__':
 
         if turtle_id == 'T1':
             t1_pub.publish(turtle_data)
+            print(turtle_data)
 
         elif turtle_id == 'T2':
             t2_pub.publish(turtle_data)
+            print(turtle_data)
 
         elif turtle_id == 'T3':
             t3_pub.publish(turtle_data)

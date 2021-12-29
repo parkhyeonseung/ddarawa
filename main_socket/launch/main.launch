@@ -1,0 +1,11 @@
+<launch>
+    <node pkg = 'multi' type = 'master_receive_pose' name = 'master_receive_pose'/>
+    <node pkg = 'multi' type = 'master_receive_t1pose' name = 'master_receive_t1pose' />
+    <node pkg = 'multi' type = 'master_receive_t2pose' name = 'master_receive_t2pose' />
+    <node pkg = 'multi' type = 'master_receive_t3pose' name = 'master_receive_t3pose' />
+    <node pkg = 'multi' type = 'master_receive_t4pose' name = 'master_receive_t4pose' />
+    <node pkg = 'multi' type = 'master_receive_t5pose' name = 'master_receive_t5pose' />
+    <node pkg = 'multi' type = 'movebase_client_py' name = 'movebase_client_py' />
+    
+
+</launch>
