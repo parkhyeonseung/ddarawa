@@ -60,10 +60,5 @@ if __name__ == '__main__':
                 rospy.sleep(0.5)
                 pub.publish(goal)
 
-                client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
-                client.wait_for_server()
-                result = client.get_result()
-                print(result)
-
         except KeyboardInterrupt :
             break
