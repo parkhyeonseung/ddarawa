@@ -5,7 +5,7 @@ import socket
 import pickle
 
 def callback_t5(data):
-    t5_ip = '192.168.0.16'
+    t5_ip = '192.168.0.6'
     sender = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     data = pickle.dumps(data)
     sender.sendto(data,(t5_ip,7778))

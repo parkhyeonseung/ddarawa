@@ -7,7 +7,7 @@ from std_msgs.msg import Float64MultiArray
 
 if __name__=='__main__':
     rospy.init_node('master_receive_pose')
-    main_ip = '192.168.0.16'
+    main_ip = '192.168.0.6'
 
     ####### turtlebot들한테서 position을 소켓으로 받는 main#############
     receiver = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -30,15 +30,17 @@ if __name__=='__main__':
 
         if turtle_id == 'T1':
             t1_pub.publish(turtle_data)
+            print(turtle_data)
 
         elif turtle_id == 'T2':
-            t1_pub.publish(turtle_data)
+            t2_pub.publish(turtle_data)
+            print(turtle_data)
 
         elif turtle_id == 'T3':
-            t1_pub.publish(turtle_data)
+            t3_pub.publish(turtle_data)
 
         elif turtle_id == 'T4':
-            t1_pub.publish(turtle_data)
+            t4_pub.publish(turtle_data)
 
         elif turtle_id == 'T5':
-            t1_pub.publish(turtle_data)
+            t5_pub.publish(turtle_data)

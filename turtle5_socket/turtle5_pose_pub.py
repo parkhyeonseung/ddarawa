@@ -20,7 +20,7 @@ def callback(data):
 
 
 if __name__ =='__main__':
-    master_ip = '192.168.0.16'
+    master_ip = '192.168.0.6'
     rospy.init_node('turtle5_pose_pub')
     rospy.Subscriber('/amcl_pose',PoseWithCovarianceStamped,callback=callback)
     rospy.spin()

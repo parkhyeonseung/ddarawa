@@ -8,7 +8,8 @@ def callback_t1(data):
     t1_ip = '192.168.0.16'
     sender = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     data = pickle.dumps(data)
-    sender.sendto(data,(t1_ip,7778))
+    # sender.sendto(data,(t1_ip,7778))
+    print(data)
 
 
 if __name__=='__main__':
